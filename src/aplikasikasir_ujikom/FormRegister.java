@@ -71,6 +71,7 @@ public class FormRegister extends javax.swing.JFrame {
         txtuser = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Form Register\n");
         setBackground(new java.awt.Color(204, 204, 204));
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 255));

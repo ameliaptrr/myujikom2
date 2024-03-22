@@ -38,7 +38,7 @@ public class MenuUtama extends javax.swing.JFrame {
         logout.setEnabled(false);
         master.setEnabled(false);
         transaksi.setEnabled(false);
-        laporan.setEnabled(false);
+        rkplap.setEnabled(false);
         txtTanggal.setEnabled(false);
         txtJam.setEnabled(false);
         FormLogin.setVisible(false);
@@ -83,6 +83,7 @@ public class MenuUtama extends javax.swing.JFrame {
         FormLogin = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtuser = new javax.swing.JTextField();
@@ -113,17 +114,25 @@ public class MenuUtama extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         transaksi = new javax.swing.JMenu();
         penjualan = new javax.swing.JMenuItem();
-        laporan = new javax.swing.JMenu();
+        rkplap = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         tentang = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Utama");
 
+        FormLogin.setTitle("Form Login\n");
         FormLogin.setVisible(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 255));
         jPanel1.setLayout(null);
         jPanel1.add(jLabel1);
         jLabel1.setBounds(50, 150, 0, 0);
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/userrr.png"))); // NOI18N
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(50, 150, 100, 100);
 
         jPanel2.setBackground(new java.awt.Color(236, 236, 236));
         jPanel2.setLayout(null);
@@ -143,18 +152,20 @@ public class MenuUtama extends javax.swing.JFrame {
         txtuser.setBounds(80, 120, 220, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/hak akses.png"))); // NOI18N
         jLabel4.setText("Hak Akses");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(80, 250, 80, 21);
+        jLabel4.setBounds(80, 250, 100, 21);
 
         cmbhak.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Pilih Salah Satu-", "Admin", "Petugas" }));
         jPanel2.add(cmbhak);
         cmbhak.setBounds(80, 280, 220, 30);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-password-20.png"))); // NOI18N
         jLabel5.setText("Password");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(80, 170, 62, 21);
+        jLabel5.setBounds(80, 170, 90, 21);
 
         btnlogin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnlogin.setForeground(new java.awt.Color(0, 0, 255));
@@ -186,9 +197,10 @@ public class MenuUtama extends javax.swing.JFrame {
         txtpw.setBounds(80, 200, 220, 30);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-user-20.png"))); // NOI18N
         jLabel6.setText("Username");
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(80, 90, 66, 21);
+        jLabel6.setBounds(80, 90, 90, 21);
 
         javax.swing.GroupLayout FormLoginLayout = new javax.swing.GroupLayout(FormLogin.getContentPane());
         FormLogin.getContentPane().setLayout(FormLoginLayout);
@@ -325,12 +337,37 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jMenuBar1.add(transaksi);
 
-        laporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-purchase-order-30.png"))); // NOI18N
-        laporan.setText("Laporan");
-        jMenuBar1.add(laporan);
+        rkplap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-purchase-order-30.png"))); // NOI18N
+        rkplap.setText("Laporan");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/rekap.png"))); // NOI18N
+        jMenuItem1.setText("Rekap Laporan");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        rkplap.add(jMenuItem1);
+
+        jMenuBar1.add(rkplap);
 
         tentang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-about-30.png"))); // NOI18N
-        tentang.setText("Tentang");
+        tentang.setText("Help");
+        tentang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tentangActionPerformed(evt);
+            }
+        });
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-about-30.png"))); // NOI18N
+        jMenuItem2.setText("Tentang");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        tentang.add(jMenuItem2);
+
         jMenuBar1.add(tentang);
 
         setJMenuBar(jMenuBar1);
@@ -356,9 +393,9 @@ public class MenuUtama extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(113, 113, 113)
                                 .addComponent(jLabel8)
-                                .addGap(173, 173, 173)
+                                .addGap(181, 181, 181)
                                 .addComponent(jLabel9)
-                                .addGap(177, 177, 177)
+                                .addGap(169, 169, 169)
                                 .addComponent(jLabel3)
                                 .addGap(21, 21, 21))
                             .addGroup(layout.createSequentialGroup()
@@ -380,7 +417,7 @@ public class MenuUtama extends javax.swing.JFrame {
                         .addGap(76, 76, 76))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(FormLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(223, 223, 223))))
+                        .addGap(172, 172, 172))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,7 +477,7 @@ new FormProduk().setVisible(true);       // TODO add your handling code here:
                         logout.setEnabled(true);
                         master.setEnabled(true);
                         transaksi.setEnabled(true);
-                        laporan.setEnabled(true);
+                        rkplap.setEnabled(true);
                         txtTanggal.setEnabled(false);
                         txtJam.setEnabled(false);
                         FormLogin.setVisible(false);
@@ -454,10 +491,10 @@ new FormProduk().setVisible(true);       // TODO add your handling code here:
                         transaksi.setEnabled(true);
                         master.setEnabled(true);
                         transaksi.setEnabled(true);
-                        laporan.setEnabled(true);
+                        rkplap.setEnabled(true);
                         txtTanggal.setEnabled(true);
                         txtJam.setEnabled(true);
-                        FormLogin.setVisible(true);
+                        FormLogin.setVisible(false);
                         btnregister.setEnabled(false);
                         btnpelanggan.setEnabled(true);
                         btnproduk.setEnabled(true);
@@ -467,19 +504,18 @@ new FormProduk().setVisible(true);       // TODO add your handling code here:
                 JOptionPane.showMessageDialog(null, "Selamat Datang '"+txtuser.getText()+"'");
                     String text = txtuser.getText();
                     lblUser.setText(" Selamat Datang, "+text);
-        }
+                }
         } else {
                 JOptionPane.showMessageDialog(null, "Gagal Masuk, Periksa Kembali");
                     txtuser.setText("");
                     txtpw.setText("");
                     cmbhak.setSelectedItem("-Pilih Salah Satu");
-}
-
+                }
+         
          } catch (Exception e){
                 JOptionPane.showMessageDialog(null, "Login Gagal");
       
-}
-       
+        }    
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
@@ -521,6 +557,19 @@ new FormPenjualan().setVisible(true);          // TODO add your handling code he
     private void btnloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnloginMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+new FormLaporanTransaksi().setVisible(true);    // TODO add your handling code here:
+       // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+new FormAbout().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void tentangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tentangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tentangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -568,6 +617,7 @@ new FormPenjualan().setVisible(true);          // TODO add your handling code he
     private javax.swing.JButton btnregister;
     private javax.swing.JComboBox<String> cmbhak;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -577,10 +627,11 @@ new FormPenjualan().setVisible(true);          // TODO add your handling code he
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JMenu laporan;
     private javax.swing.JLabel lblUser;
     private javax.swing.JMenuItem login;
     private javax.swing.JMenuItem logout;
@@ -589,6 +640,7 @@ new FormPenjualan().setVisible(true);          // TODO add your handling code he
     private javax.swing.JMenuItem penjualan;
     private javax.swing.JMenuItem produk;
     private javax.swing.JMenuItem register;
+    private javax.swing.JMenu rkplap;
     private javax.swing.JMenu tentang;
     private javax.swing.JMenu transaksi;
     private javax.swing.JTextField txtJam;

@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 import java.util.Date;
+
 /**
  *
  * @author User
@@ -32,20 +33,38 @@ public class FormPenjualan extends javax.swing.JFrame {
     public FormPenjualan() {
         initComponents();
         konek = Koneksi.koneksiDB();
-       
-        tampilJam();
+        tampilWaktu();
         detail();
         autonumber();
         penjumlahan();
-
+    }
+    public void tampilWaktu() {
+        Thread clock=new Thread(){
+        public void run(){
+            for(;;){
+                Calendar cal=Calendar.getInstance();
+                SimpleDateFormat format=new SimpleDateFormat("HH:mm:ss");
+                SimpleDateFormat format2=new SimpleDateFormat("yyyy-MM-dd");
+                txtjam.setText(format.format(cal.getTime()));
+                 txttgl.setText(format2.format(cal.getTime()));
+                
+            try { sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(FormPenjualan.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          }
+        }
+      };
+    clock.start();
+    
     }
    private void simpan(){
         String tgl=txttgl.getText();
         String jam=txtjam.getText();
       try {
-            String sql="insert into penjualan (PenjualanID, DetailID, TanggalPenjualan, JamPenjualan,TotalHarga) value (?,?,?,?,?)";
+            String sql="insert into penjualan (PenjualanID,DetailID,TanggalPenjualan,JamPenjualan,TotalHarga) value (?,?,?,?,?)";
             pst=konek.prepareStatement(sql);
-            pst.setString(1, txtidpro.getText());
+            pst.setString(1, txtidpen.getText());
             pst.setString(2, iddetail);
             pst.setString(3, tgl);
             pst.setString(4, jam);
@@ -55,68 +74,67 @@ public class FormPenjualan extends javax.swing.JFrame {
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
             }
+   }
+     private void total(){
+        int total, bayar, kembali;
+            total= Integer.parseInt(txtbayar.getText());
+            bayar= Integer.parseInt(txttotal.getText());
+            kembali=total-bayar;
+            String ssub=String.valueOf(kembali);
+            txtkembali.setText(ssub);
     }
     
-    private void total(){
-    int total, bayar, kembali;
-        total= Integer.parseInt(txtbayar.getText());
-        bayar= Integer.parseInt(txttotal.getText());
-        kembali=total-bayar;
-        String ssub=String.valueOf(kembali);
-        txtkembali.setText(ssub);
-    }
-    
-    private void clear() {
-        txtjmlh.setText(""); 
-        txtidpen.setEnabled(false);
-    }
-    
-    public void cari(){
-    try {
-        String sql="select * from produk where ProdukID LIKE '%"+txtidpro.getText()+"%'";
-        pst=konek.prepareStatement(sql);
-        rst=pst.executeQuery();
-        tblnm.setModel(DbUtils.resultSetToTableModel(rst));
-       } catch (Exception e){ JOptionPane.showMessageDialog(null, e);} 
-    }
-    
-    public void kurangi_stok(){
-        int qty;
-        qty=Integer.parseInt(txtjmlh.getText());
-        kurangistok=inputstok-qty;
-    }
-    
-    private void subtotal(){
-    int jumlah, sub;
-         jumlah= Integer.parseInt(txtjmlh.getText());
-         sub=(jumlah * inputharga);
-         sub_total=String.valueOf(sub);     
-    }
-    
-    public void tambah_stok(){
-    tambahstok=inputjumlah+inputstok2;
+    public void clear() {
+        txtjmlh.setText("");
+
+        }
+        public void cari(){
         try {
-        String update="update produk set Stok='"+tambahstok+"' where ProdukID='"+idproduk+"'";
-        pst2=konek.prepareStatement(update);
-        pst2.execute();
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);}
-    }
-    
-    public void ambil_stok(){
-        try {
-            String sql="select * from produk where ProdukID='"+idproduk+"'";
+            String sql="select * from produk where ProdukID LIKE '%"+txtidpro.getText()+"%'";
             pst=konek.prepareStatement(sql);
             rst=pst.executeQuery();
-            if (rst.next()) {    
-            String stok=rst.getString(("Stok"));
-            inputstok2= Integer.parseInt(stok);
+            tblnm.setModel(DbUtils.resultSetToTableModel(rst));
+           } catch (Exception e){ JOptionPane.showMessageDialog(null, e);} 
+        }
+        
+        
+    public void kurangi_stok(){
+            int qty;
+            qty=Integer.parseInt(txtjmlh.getText());
+            kurangistok=inputstok-qty;
             }
-            }catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);}
-    }
+             private void subtotal(){
+            int jumlah, sub;
+                 jumlah= Integer.parseInt(txtjmlh.getText());
+                 sub=(jumlah*inputharga);
+                 sub_total=String.valueOf(sub);     
+            }
     
-    public void penjumlahan(){
+    public void tambah_stok(){
+            tambahstok=inputjumlah+inputstok2;
+                try {
+                String update="update produk set Stok='"+tambahstok+"' where ProdukID='"+idproduk+"'";
+                pst2=konek.prepareStatement(update);
+                pst2.execute();
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(null, e);}
+            }
+    
+    
+    public void ambil_stock(){
+        try {
+        String sql="select * from produk where ProdukID='"+idproduk+"'";
+        pst=konek.prepareStatement(sql);
+        rst=pst.executeQuery();
+        if (rst.next()) {    
+        String stok=rst.getString(("Stok"));
+        inputstok2= Integer.parseInt(stok);
+        }
+        }catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);}
+        }
+    
+     public void penjumlahan(){
         int totalBiaya = 0;
         int subtotal;
         DefaultTableModel dataModel = (DefaultTableModel) tbldt.getModel();
@@ -127,71 +145,42 @@ public class FormPenjualan extends javax.swing.JFrame {
         }
         txttotal.setText(String.valueOf(totalBiaya));
     }
-    
     public void autonumber(){
-    try{
-        String sql = "SELECT MAX(RIGHT(PenjualanID,3)) AS NO FROM penjualan";
-        pst=konek.prepareStatement(sql);
-        rst=pst.executeQuery();
-        while (rst.next()) {
-                if (rst.first() == false) {
-                    txtidpen.setText("IDP001");
-                } else {
-                    rst.last();
-                    int auto_id = rst.getInt(1) + 1;
-                    String no = String.valueOf(auto_id);
-                    int NomorJual = no.length();
-                    for (int j = 0; j < 3 - NomorJual; j++) {
-                        no = "0" + no;
-                    }
-                    txtidpen.setText("IDP" + no);
-                }
-            }
-        rst.close();
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);}
-    }
-    
-    public void detail(){
-        try {
-            String Kode_detail=txtidpen.getText();
-            String KD="D"+Kode_detail;
-            String sql="select * from detail_penjualan where DetailID='"+KD+"'";
+        try{
+            String sql = "SELECT MAX(RIGHT(PenjualanID,3)) AS NO FROM penjualan";
             pst=konek.prepareStatement(sql);
             rst=pst.executeQuery();
-            tbldt.setModel(DbUtils.resultSetToTableModel(rst));
-           } catch (Exception e){ 
-               JOptionPane.showMessageDialog(null, e);} 
-    }
-    
-    public void tampilJam(){
-        Thread clock=new Thread(){
-            public void run(){
-                for(;;){
-                    Calendar cal=Calendar.getInstance();
-                    SimpleDateFormat format=new SimpleDateFormat("HH:mm:ss");
-                    SimpleDateFormat format2=new SimpleDateFormat("yyyy-MM-dd");
-                    txtjam.setText(format.format(cal.getTime()));
-                    txttgl.setText(format2.format(cal.getTime()));
-
-                try { sleep(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(FormPenjualan.class.getName()).log(Level.SEVERE, null, ex);
+            while (rst.next()) {
+                    if (rst.first() == false) {
+                        txtidpen.setText("IDP001");
+                    } else {
+                        rst.last();
+                        int auto_id = rst.getInt(1) + 1;
+                        String no = String.valueOf(auto_id);
+                        int NomorJual = no.length();
+                        for (int j = 0; j < 3 - NomorJual; j++) {
+                            no = "0" + no;
+                        }
+                        txtidpen.setText("IDP" + no);
+                    }
                 }
-              }
-            }
-          };
-        clock.start();
+            rst.close();
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);}
         }
+    
+    public void detail(){
+            try {
+                String Kode_detail=txtidpen.getText();
+                String KD="D"+Kode_detail;
+                String sql="select * from detail_penjualan where DetailID='"+KD+"'";
+                pst=konek.prepareStatement(sql);
+                rst=pst.executeQuery();
+                tbldt.setModel(DbUtils.resultSetToTableModel(rst));
+               } catch (Exception e){ 
+                   JOptionPane.showMessageDialog(null, e);} 
+            }
 
-    
-    
-    
-    
-    
-     
-     
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -229,6 +218,7 @@ public class FormPenjualan extends javax.swing.JFrame {
         txtkembali = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Form Penjualan\n");
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 255));
 
@@ -243,15 +233,19 @@ public class FormPenjualan extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(308, 308, 308))
+                .addGap(292, 292, 292))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
+
+        txtjam.setEnabled(false);
+
+        txttgl.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setText("ID Produk");
@@ -290,6 +284,7 @@ public class FormPenjualan extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel3.setText("Jumlah");
 
+        txtidpen.setEnabled(false);
         txtidpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtidpenActionPerformed(evt);
@@ -541,7 +536,7 @@ cari();                // TODO add your handling code here:
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        ambil_stok();        // TODO add your handling code here:
+        ambil_stock();        // TODO add your handling code here:
     }//GEN-LAST:event_tbldtMouseClicked
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
@@ -580,14 +575,14 @@ this.dispose();            // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnbayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbayarActionPerformed
-  total();
+        total();
         simpan();
         autonumber();
         detail();
         txttotal.setText("");
         txtbayar.setText("");
         txtkembali.setText("");
-        txtidpen.setText("");
+        txtidpro.setText("");
         cari();        // TODO add your handling code here:
     }//GEN-LAST:event_btnbayarActionPerformed
 

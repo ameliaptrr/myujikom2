@@ -120,6 +120,7 @@ public class FomPelanggan extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Form Pelanggan\n");
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 255));
