@@ -328,6 +328,8 @@ public class FormPenjualan extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel7.setText("Kembalian");
 
+        txttotal.setEnabled(false);
+
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel8.setText("Total");
 
@@ -363,6 +365,8 @@ public class FormPenjualan extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        txtkembali.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

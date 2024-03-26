@@ -122,6 +122,10 @@ public class MenuUtama extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Utama");
 
+        txtTanggal.setEnabled(false);
+
+        txtJam.setEnabled(false);
+
         FormLogin.setTitle("Form Login\n");
         FormLogin.setVisible(true);
 

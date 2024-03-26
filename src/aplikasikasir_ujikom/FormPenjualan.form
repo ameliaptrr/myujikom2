@@ -419,6 +419,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txttotal">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtbayar">
     </Component>
@@ -490,6 +493,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtkembali">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
