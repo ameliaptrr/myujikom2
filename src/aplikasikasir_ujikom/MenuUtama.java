@@ -329,9 +329,19 @@ public class MenuUtama extends javax.swing.JFrame {
 
         transaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-receipt-25.png"))); // NOI18N
         transaksi.setText("Transaksi");
+        transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transaksiMouseClicked(evt);
+            }
+        });
 
         penjualan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sale.png"))); // NOI18N
         penjualan.setText("Penjualan");
+        penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                penjualanMouseClicked(evt);
+            }
+        });
         penjualan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 penjualanActionPerformed(evt);
@@ -410,9 +420,9 @@ public class MenuUtama extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnpenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)))))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(306, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -496,8 +506,8 @@ new FormProduk().setVisible(true);       // TODO add your handling code here:
                         master.setEnabled(true);
                         transaksi.setEnabled(true);
                         rkplap.setEnabled(true);
-                        txtTanggal.setEnabled(true);
-                        txtJam.setEnabled(true);
+                        txtTanggal.setEnabled(false);
+                        txtJam.setEnabled(false);
                         FormLogin.setVisible(false);
                         btnregister.setEnabled(false);
                         btnpelanggan.setEnabled(true);
@@ -574,6 +584,14 @@ new FormAbout().setVisible(true);        // TODO add your handling code here:
     private void tentangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tentangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tentangActionPerformed
+
+    private void transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transaksiMouseClicked
+
+    private void penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penjualanMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_penjualanMouseClicked
 
     /**
      * @param args the command line arguments

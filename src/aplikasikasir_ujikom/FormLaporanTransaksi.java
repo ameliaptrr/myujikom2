@@ -53,6 +53,7 @@ public class FormLaporanTransaksi extends javax.swing.JFrame {
         btncari3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblLapTransaksi = new javax.swing.JTable();
+        btnkeluar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Form Laporan Transaksi\n");
@@ -144,6 +145,16 @@ public class FormLaporanTransaksi extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblLapTransaksi);
 
+        btnkeluar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnkeluar.setForeground(new java.awt.Color(0, 51, 255));
+        btnkeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-exit-22_1.png"))); // NOI18N
+        btnkeluar.setText("KELUAR");
+        btnkeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkeluarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -167,13 +178,15 @@ public class FormLaporanTransaksi extends javax.swing.JFrame {
                                 .addComponent(SampaiTgl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(SetelahTgl, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SebelumTgl, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btncari)
                             .addComponent(btncari3)
                             .addComponent(btncari1)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(259, 259, 259))
+                .addGap(109, 109, 109)
+                .addComponent(btnkeluar)
+                .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,15 +197,17 @@ public class FormLaporanTransaksi extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel1)
                         .addComponent(SebelumTgl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(DariTgl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(SampaiTgl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2))
-                    .addComponent(btncari1))
-                .addGap(36, 36, 36)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btncari1)
+                        .addComponent(btnkeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(SetelahTgl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,7 +216,7 @@ public class FormLaporanTransaksi extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -252,8 +267,7 @@ public class FormLaporanTransaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_btncari1ActionPerformed
 
     private void btncari3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncari3ActionPerformed
-
-        try {
+    try {
         SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
         tanggal =  format.format(DariTgl.getDate());
         sql = "Select * from penjualan where TanggalPenjualan > '"+tanggal+"'";
@@ -284,6 +298,10 @@ public class FormLaporanTransaksi extends javax.swing.JFrame {
     private void tbldataprodukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldataprodukMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tbldataprodukMouseClicked
+
+    private void btnkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeluarActionPerformed
+    this.dispose();            // TODO add your handling code here:
+    }//GEN-LAST:event_btnkeluarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -328,6 +346,7 @@ public class FormLaporanTransaksi extends javax.swing.JFrame {
     private javax.swing.JButton btncari;
     private javax.swing.JButton btncari1;
     private javax.swing.JButton btncari3;
+    private javax.swing.JButton btnkeluar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

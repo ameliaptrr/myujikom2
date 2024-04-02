@@ -574,8 +574,7 @@ cari();                // TODO add your handling code here:
     }//GEN-LAST:event_tblnmMouseEntered
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-new MenuUtama().setVisible(true);
-this.dispose();            // TODO add your handling code here:
+    this.dispose();            // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnbayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbayarActionPerformed

@@ -144,6 +144,7 @@ public class FormPelanggan extends javax.swing.JFrame {
         });
 
         btnedit.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnedit.setForeground(new java.awt.Color(0, 51, 255));
         btnedit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-pencil-22.png"))); // NOI18N
         btnedit.setText("EDIT");
         btnedit.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +154,7 @@ public class FormPelanggan extends javax.swing.JFrame {
         });
 
         btntambah.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btntambah.setForeground(new java.awt.Color(0, 51, 255));
         btntambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-save-22.png"))); // NOI18N
         btntambah.setText("SIMPAN");
         btntambah.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +164,7 @@ public class FormPelanggan extends javax.swing.JFrame {
         });
 
         btnkeluar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnkeluar.setForeground(new java.awt.Color(0, 51, 255));
         btnkeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-exit-22_1.png"))); // NOI18N
         btnkeluar.setText("KELUAR");
         btnkeluar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +174,7 @@ public class FormPelanggan extends javax.swing.JFrame {
         });
 
         btnhapus.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        btnhapus.setForeground(new java.awt.Color(0, 51, 255));
         btnhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-22.png"))); // NOI18N
         btnhapus.setText("HAPUS");
         btnhapus.addActionListener(new java.awt.event.ActionListener() {
@@ -292,8 +296,7 @@ clear();        // TODO add your handling code here:
     }//GEN-LAST:event_btntambahActionPerformed
 
     private void btnkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeluarActionPerformed
-new MenuUtama().setVisible(true);
-this.dispose();        // TODO add your handling code here:
+    this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnkeluarActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
